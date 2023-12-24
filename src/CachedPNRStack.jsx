@@ -19,15 +19,15 @@ export default function CachedPNRStack({ data, style }) {
 }
 
 function compareDates(data1, data2) {
-  date1 = convertToDate(data1.SourceDoj);
-  date2 = convertToDate(data2.SourceDoj);
+  let date1 = convertToDate(data1.SourceDoj);
+  let date2 = convertToDate(data2.SourceDoj);
   return date1 < date2
     ? -1
     : date1 > date2
-    ? 1
-    : data1.DepartureTime <= data2.DepartureTime
-    ? -1
-    : 1;
+      ? 1
+      : data1.DepartureTime <= data2.DepartureTime
+        ? -1
+        : 1;
 }
 
 function convertToDate(date) {
