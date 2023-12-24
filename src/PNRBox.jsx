@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import axios from "axios";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,8 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Table from "@mui/material/Table";
@@ -30,8 +27,8 @@ const ExpandMore = styled((props) => {
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest
-  })
+    duration: theme.transitions.duration.shortest,
+  }),
 }));
 
 export default function PNRBox({ data, style }) {
@@ -47,7 +44,7 @@ export default function PNRBox({ data, style }) {
       method: "get",
       maxBodyLength: Infinity,
       url: "https://hh4cr4-3000.csb.app/pnr?pnr=" + data.Pnr,
-      headers: {}
+      headers: {},
     };
     axios
       .request(config)
@@ -78,8 +75,8 @@ export default function PNRBox({ data, style }) {
                 pnrData.PassengerStatus[0].CurrentStatusNew === "CNF"
                   ? "green"
                   : pnrData.PassengerStatus[0].CurrentStatusNew === "RAC"
-                  ? "grey"
-                  : red[500]
+                    ? "grey"
+                    : red[500],
             }}
             aria-label="recipe"
           >
@@ -187,7 +184,7 @@ export default function PNRBox({ data, style }) {
 function tConvert(time) {
   // Check correct time format and split into components
   time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [
-    time
+    time,
   ];
 
   if (time.length > 1) {

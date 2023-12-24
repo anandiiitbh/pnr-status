@@ -1,8 +1,5 @@
 import * as React from "react";
-import Divider from "@mui/material/Divider";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
 
 import PNRBox from "./PNRBox";
 

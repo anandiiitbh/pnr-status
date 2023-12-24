@@ -7,7 +7,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TrainIcon from "@mui/icons-material/Train";
@@ -21,7 +20,7 @@ const glassMorphStyle = {
   backgroundColor: "rgba(255,255,255,0.2)",
   backgroundImage:
     "linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0))",
-  backdropFilter: "blur(7px)"
+  backdropFilter: "blur(7px)",
 };
 const defaultTheme = createTheme();
 
@@ -58,7 +57,7 @@ function GetPNRStatus() {
       method: "get",
       maxBodyLength: Infinity,
       url: "https://hh4cr4-3000.csb.app/pnr?pnr=" + data,
-      headers: {}
+      headers: {},
     };
 
     if (data.length === 10) {
@@ -66,14 +65,18 @@ function GetPNRStatus() {
         .request(config)
         .then((response) => {
           setSavedPNR(
-            cachedPNR(savedPNR, response.data, formData.get("remember"))
+            cachedPNR(savedPNR, response.data, formData.get("remember")),
           );
           setData(response.data);
         })
         .catch((error) => {
+          console.log(error);
           setData(null);
         })
-        .then((e) => setLoad(false));
+        .then((e) => {
+          console.log(e);
+          setLoad(false);
+        });
     }
   };
 
@@ -88,7 +91,7 @@ function GetPNRStatus() {
             "url(https://images7.alphacoders.com/661/661783.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundPosition: "left"
+          backgroundPosition: "left",
         }}
       >
         <CssBaseline />
@@ -102,7 +105,7 @@ function GetPNRStatus() {
               mx: 4,
               display: "flex",
               flexDirection: "column",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -178,7 +181,7 @@ export default GetPNRStatus;
 function cachedPNR(oldArray, newObj, remember) {
   let newPNR = newObj.Pnr;
   let pnrExist = false;
-  for (obj in oldArray) {
+  for (let obj in oldArray) {
     console.log(oldArray[obj]);
     if (oldArray[obj].Pnr === newPNR) pnrExist = true;
   }
